@@ -186,7 +186,7 @@ class Conjunction():
 
 
 # Alpha(1) Num(0)
-def makeMatch(RegExprs):
+def makeMatch(RegExprs, num):
 
 	return Match(RegExprs, num)
 

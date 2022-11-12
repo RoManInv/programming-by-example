@@ -1,23 +1,25 @@
 import sys
+
 sys.path.append("C:\\Users\\minori\\Desktop\\PBE_codes")
+import copy
 from statistics import mode
 
+import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
+
 import generate as gn
 import intersect as ins
 import ranking as rk
 import tools_pbe as tls
-import copy
-import pandas as pd
-import matplotlib.pyplot as plt
-pd.options.display.max_columns = None
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import make_classification
-from sklearn.ensemble import ExtraTreesClassifier
-from sklearn.model_selection import train_test_split
-import csv
 
+pd.options.display.max_columns = None
+import csv
 from collections import Counter
+
+from sklearn.datasets import make_classification
+from sklearn.ensemble import ExtraTreesClassifier, RandomForestClassifier
+from sklearn.model_selection import train_test_split
 
 seed = 10
 
@@ -186,8 +188,8 @@ def plot_feature_importance(X, y, name):
 	print("Feature ranking:")
 
 	for f in range(X.shape[1]):
-	    print("%d. feature %d (%f)" % (f + 1, indices[f], importances[indices[f]]))
-
+		print("%d. feature %d (%f)" % (f + 1, indices[f], importances[indices[f]]))
+	
 	# Plot the feature importances of the forest
 	plt.figure()
 	plt.title("Feature importances")
@@ -546,5 +548,5 @@ if __name__ == "__main__":
 		print(STACK.shape)
 
 		with open('ranking_train_with.csv', 'a') as f:
-			 writer = csv.writer(f, lineterminator='\n')
-			 writer.writerows(STACK)
+			writer = csv.writer(f, lineterminator='\n')
+			writer.writerows(STACK)
