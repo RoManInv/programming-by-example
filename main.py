@@ -496,10 +496,11 @@ if __name__ == "__main__":
 
 			#Print selected domain-specific languages
 			for trace_expr, switch in zip(trace_exprs_s[i], switches_s[i]):
-				for trace, swi in zip(trace_expr, switch):
-					trace.print_constructor()
-					swi.print_constructor()
-				print("")
+				if trace_expr and switch:
+					for trace, swi in zip(trace_expr, switch):
+						trace.print_constructor()
+						swi.print_constructor()
+					print("")
 
 			"""
 			#Print selected domain-specific languages

@@ -214,7 +214,7 @@ def RANKING_FLASHFILL(trace_exprs_val, switches_val):
 
 	return trace_exprs_sort[0], switches_sort[0]
 
-def RANKING(trace_exprs_val, switches_val, data, target, target_name, seed=0, test_size=0.0):
+def RANKING(trace_exprs_val, switches_val, data, target, target_name, seed=0, test_size=0.2):
 	print(data.describe(include=['O']))
 	accs = list()
 
@@ -249,8 +249,10 @@ def RANKING(trace_exprs_val, switches_val, data, target, target_name, seed=0, te
 			new_dat[idx] = repl
 
 		new_dat = np.array(new_dat)
-
-		X = pd.DataFrame(data=new_dat, columns=['new_dat'], dtype=type(new_dat[0]))
+		try:
+			X = pd.DataFrame(data=new_dat, columns=['new_dat'], dtype=type(new_dat[0]))
+		except:
+			X = pd.DataFrame(data=new_dat, columns=['new_dat'])
 		X, _, _ = data_category_to_num(X, 'new_dat')
 
 		x_train, x_test, y_train, y_test = train_test_split(X, target, test_size=test_size, shuffle=False)
